@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">FFIS for HAeC</string>
+    <string name="refresh">Refresh</string>
+    <string name="nodata">no data</string>
+    <string name="flying">Flugbetrieb!</string>
+    <string name="flying_since">Seit %1$s</string>
+    <string name="not_fling">Der Flugbetrieb wurde eingestellt.</string>
+    <string name="not_flying_since">Um %1$s</string>
+    <string name="action_refresh">Refresh</string>
+</resources>
