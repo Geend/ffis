@@ -1,9 +1,11 @@
 package net.torbenvoltmer.ffis.webservice.state
 
 
-import net.torbenvoltmer.ffis.common.state.ConcreteState
-import net.torbenvoltmer.ffis.common.state.NoDataState
-import net.torbenvoltmer.ffis.common.state.State
+import net.torbenvoltmer.ffis.common.state.FalseState
+import net.torbenvoltmer.ffis.common.state.TrueState
+import net.torbenvoltmer.ffis.common.state.timedstate.ConcreteTimedState
+import net.torbenvoltmer.ffis.common.state.timedstate.NoDataTimedState
+import net.torbenvoltmer.ffis.common.state.timedstate.TimedState
 
 import net.torbenvoltmer.ffis.webservice.state.sunset.SunsetNotifyReciever
 import net.torbenvoltmer.ffis.webservice.state.sunset.SunsetStateChangeTimer
@@ -20,33 +22,42 @@ import org.springframework.stereotype.Service
 class StateService @Autowired constructor(sunsetStateChangeTimer: SunsetStateChangeTimer) : SunsetNotifyReciever {
 
 
-    private var currentFlyingState: State = NoDataState()
-    private var currentGrillingState: State = NoDataState()
+    private var currentFlyingTimedState: TimedState = NoDataTimedState()
+    private var currentGrillingTimedState: TimedState = NoDataTimedState()
 
     init {
         sunsetStateChangeTimer.receiver = this
     }
 
-    fun getFlyingState(): State {
-        return currentFlyingState
+    fun getFlyingState(): TimedState {
+        return currentFlyingTimedState
     }
 
     fun setFlying(state:Boolean){
-        currentFlyingState = ConcreteState(state, DateTime.now())
 
+        if(state) {
+            currentFlyingTimedState = ConcreteTimedState(TrueState, DateTime.now())
+        }
+        else{
+            currentFlyingTimedState = ConcreteTimedState(FalseState, DateTime.now())
+        }
     }
 
     fun setGrillingState(state: Boolean) {
-        currentGrillingState = ConcreteState(state, DateTime.now())
-
+        if(state) {
+            currentGrillingTimedState = ConcreteTimedState(TrueState, DateTime.now())
+        }
+        else{
+            currentGrillingTimedState = ConcreteTimedState(FalseState, DateTime.now())
+        }
     }
 
-    fun getGrillingState(): State {
-        return currentGrillingState;
+    fun getGrillingState(): TimedState {
+        return currentGrillingTimedState;
     }
 
     override fun handleSunset() {
-        currentFlyingState = ConcreteState(false, DateTime.now())
-        currentGrillingState = ConcreteState(false, DateTime.now())
+        currentFlyingTimedState = ConcreteTimedState(FalseState, DateTime.now())
+        currentGrillingTimedState = ConcreteTimedState(FalseState, DateTime.now())
     }
 }

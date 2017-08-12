@@ -7,4 +7,6 @@
     <string name="not_fling">Der Flugbetrieb wurde eingestellt.</string>
     <string name="not_flying_since">Um %1$s</string>
     <string name="action_refresh">Refresh</string>
+    <string name="unknown_fling">Status unbekannt</string>
+    <string name="unknown_flying_since">Seit %1$s</string>
 </resources>

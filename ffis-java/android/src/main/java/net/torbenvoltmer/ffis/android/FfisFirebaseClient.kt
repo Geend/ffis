@@ -2,21 +2,22 @@ package net.torbenvoltmer.ffis.android
 
 import android.app.NotificationManager
 import android.app.PendingIntent
-import android.app.Service
 import android.app.TaskStackBuilder
 import android.content.Context
 import android.content.Intent
-import android.os.IBinder
 import android.support.v7.app.NotificationCompat
-import android.util.Log
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.datatype.joda.JodaModule
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 
-import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import net.torbenvoltmer.ffis.common.state.ConcreteState
+import net.torbenvoltmer.ffis.common.state.FalseState
+import net.torbenvoltmer.ffis.common.state.StateVisitor
+import net.torbenvoltmer.ffis.common.state.TrueState
+import net.torbenvoltmer.ffis.common.state.UndefinedState
+import net.torbenvoltmer.ffis.common.state.timedstate.ConcreteTimedState
+import org.joda.time.format.DateTimeFormat
 
 class FfisFirebaseClient : FirebaseMessagingService() {
 
@@ -30,20 +31,37 @@ class FfisFirebaseClient : FirebaseMessagingService() {
 
             val mapper = ObjectMapper().registerModule(KotlinModule())
             mapper.registerModule(JodaModule())
-            LocalStateManager.localFlyingState =  mapper.readValue(remoteMessage.data["data"], ConcreteState::class.java)
+            mapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+
+            
+            LocalStateManager.localFlyingTimedState =  mapper.readValue(remoteMessage.data["data"], ConcreteTimedState::class.java)
 
 
-            val title:String
-            val text:String
+            var title:String = ""
+            var text:String = ""
 
-            if( LocalStateManager.localFlyingState.state) {
-                title =  getString(R.string.flying);
-                text = getString(R.string.flying_since,  LocalStateManager.localFlyingState.since.toString())
-            }
-            else {
-                title = getString(R.string.not_fling);
-                text = getString(R.string.not_flying_since,  LocalStateManager.localFlyingState.since.toString())
-            }
+            val fmt = DateTimeFormat.forPattern("HH:mm dd.MM.yyyy")
+            val dtStr = fmt.print(LocalStateManager.localFlyingTimedState.since)
+
+            LocalStateManager.localFlyingTimedState.state.accept(object : StateVisitor  {
+                override fun handle(arg: TrueState) {
+                    title =  getString(R.string.flying);
+                    text = getString(R.string.flying_since,  dtStr)
+                }
+
+                override fun handle(arg: FalseState) {
+                    title = getString(R.string.not_fling);
+                    text = getString(R.string.not_flying_since,  dtStr)
+                }
+
+                override fun handle(arg: UndefinedState) {
+                    title = getString(R.string.unknown_fling);
+                    text = getString(R.string.unknown_flying_since,  dtStr)
+                }
+            })
+
+
+
 
             //TODO: Externalize notification (remove from firebase client)
             //TODO: Notification sound

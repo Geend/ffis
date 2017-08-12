@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../android/android.iml" filepath="$PROJECT_DIR$/../android/android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../common/common.iml" filepath="$PROJECT_DIR$/../common/common.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../ffis-java.iml" filepath="$PROJECT_DIR$/../ffis-java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2038306218/common.iml" filepath="$PROJECT_DIR$/.idea/modules/-2038306218/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2038306218/common_main.iml" filepath="$PROJECT_DIR$/.idea/modules/-2038306218/common_main.iml" group="common" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2038306218/common_test.iml" filepath="$PROJECT_DIR$/.idea/modules/-2038306218/common_test.iml" group="common" />
       <module fileurl="file://$PROJECT_DIR$/webservice.iml" filepath="$PROJECT_DIR$/webservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/webservice_main.iml" filepath="$PROJECT_DIR$/.idea/modules/webservice_main.iml" group="webservice" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/webservice_test.iml" filepath="$PROJECT_DIR$/.idea/modules/webservice_test.iml" group="webservice" />
     </modules>
   </component>
 </project>

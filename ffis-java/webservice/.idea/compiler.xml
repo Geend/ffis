@@ -2,7 +2,6 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
-      <module name="common" target="1.6" />
       <module name="common_main" target="1.6" />
       <module name="common_test" target="1.6" />
       <module name="webservice_main" target="1.8" />

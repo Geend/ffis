@@ -1,13 +1,12 @@
 package net.torbenvoltmer.ffis.android
 
-import android.widget.TextView
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.datatype.joda.JodaModule
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.AsyncHttpResponseHandler
 import cz.msebera.android.httpclient.Header
-import net.torbenvoltmer.ffis.common.state.ConcreteState
+import net.torbenvoltmer.ffis.common.state.timedstate.ConcreteTimedState
 import java.nio.charset.Charset
 
 /**
@@ -20,7 +19,8 @@ object FfisRestClient {
 
         //TODO: Make URL a user setting
         //TODO Error handling
-        client.get("http://state.haec.de/flying/get", object : AsyncHttpResponseHandler() {
+        //client.get("http://state.haec.de/flying/get", object : AsyncHttpResponseHandler() {
+        client.get("http://10.0.1.1:8080/flying/get", object : AsyncHttpResponseHandler() {
 
 
             override fun onStart() {
@@ -32,11 +32,12 @@ object FfisRestClient {
 
                 val mapper = ObjectMapper().registerModule(KotlinModule())
                 mapper.registerModule(JodaModule())
+                mapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
 
                 //TODO: Check if datetime is handeld correctly
-                val newState = mapper.readValue(json, ConcreteState::class.java)
+                val newState = mapper.readValue(json, ConcreteTimedState::class.java)
 
-                LocalStateManager.localFlyingState = newState
+                LocalStateManager.localFlyingTimedState = newState
             }
 
             override fun onFailure(statusCode: Int, headers: Array<Header>, errorResponse: ByteArray, e: Throwable) {
