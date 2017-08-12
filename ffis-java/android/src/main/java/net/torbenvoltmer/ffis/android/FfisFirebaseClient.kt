@@ -25,16 +25,8 @@ class FfisFirebaseClient : FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage?) {
 
         if (remoteMessage!!.data.isNotEmpty()) {
-
-
-
-
-            val mapper = ObjectMapper().registerModule(KotlinModule())
-            mapper.registerModule(JodaModule())
-            mapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-
             
-            LocalStateManager.localFlyingTimedState =  mapper.readValue(remoteMessage.data["data"], ConcreteTimedState::class.java)
+            LocalStateManager.localFlyingTimedState =  FfisJsonDecoder.timedState(remoteMessage.data["data"]!!)
 
 
             var title:String = ""

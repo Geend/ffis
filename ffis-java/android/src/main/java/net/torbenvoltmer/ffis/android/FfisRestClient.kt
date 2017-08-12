@@ -30,12 +30,9 @@ object FfisRestClient {
                 val json:String = String(response, Charset.defaultCharset())
 
 
-                val mapper = ObjectMapper().registerModule(KotlinModule())
-                mapper.registerModule(JodaModule())
-                mapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
 
                 //TODO: Check if datetime is handeld correctly
-                val newState = mapper.readValue(json, ConcreteTimedState::class.java)
+                val newState = FfisJsonDecoder.timedState(json)
 
                 LocalStateManager.localFlyingTimedState = newState
             }
