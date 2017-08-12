@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration
  * Created by torben on 29.03.16.
  */
 @Configuration
-@ConfigurationProperties(prefix = "opind.location")
+@ConfigurationProperties(prefix = "ffis.location")
 open class LocationConfig {
 
     lateinit var zoneName: String;

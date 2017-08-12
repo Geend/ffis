@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration
  * Created by torben on 28.03.16.
  */
 @Configuration
-@ConfigurationProperties(prefix = "opind.auth")
+@ConfigurationProperties(prefix = "ffis.auth")
 open class UserConfig {
 
     lateinit var user: String;
