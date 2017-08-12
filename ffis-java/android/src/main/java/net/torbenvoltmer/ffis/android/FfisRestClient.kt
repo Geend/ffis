@@ -29,9 +29,7 @@ object FfisRestClient {
             override fun onSuccess(statusCode: Int, headers: Array<Header>, response: ByteArray) {
                 val json:String = String(response, Charset.defaultCharset())
 
-
-
-                //TODO: Check if datetime is handeld correctly
+                //TODO: Fix timezones
                 val newState = FfisJsonDecoder.timedState(json)
 
                 LocalStateManager.localFlyingTimedState = newState

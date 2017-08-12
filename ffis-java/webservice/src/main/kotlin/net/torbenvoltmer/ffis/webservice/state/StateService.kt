@@ -12,6 +12,7 @@ import net.torbenvoltmer.ffis.webservice.state.sunset.SunsetStateChangeTimer
 import org.joda.time.DateTime
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.util.*
 
 /**
  * Created by torben on 08.04.16.
@@ -36,19 +37,19 @@ class StateService @Autowired constructor(sunsetStateChangeTimer: SunsetStateCha
     fun setFlying(state:Boolean){
 
         if(state) {
-            currentFlyingTimedState = ConcreteTimedState(TrueState, DateTime.now())
+            currentFlyingTimedState = ConcreteTimedState(TrueState, Date())
         }
         else{
-            currentFlyingTimedState = ConcreteTimedState(FalseState, DateTime.now())
+            currentFlyingTimedState = ConcreteTimedState(FalseState, Date())
         }
     }
 
     fun setGrillingState(state: Boolean) {
         if(state) {
-            currentGrillingTimedState = ConcreteTimedState(TrueState, DateTime.now())
+            currentGrillingTimedState = ConcreteTimedState(TrueState,Date())
         }
         else{
-            currentGrillingTimedState = ConcreteTimedState(FalseState, DateTime.now())
+            currentGrillingTimedState = ConcreteTimedState(FalseState, Date())
         }
     }
 
@@ -57,7 +58,7 @@ class StateService @Autowired constructor(sunsetStateChangeTimer: SunsetStateCha
     }
 
     override fun handleSunset() {
-        currentFlyingTimedState = ConcreteTimedState(FalseState, DateTime.now())
-        currentGrillingTimedState = ConcreteTimedState(FalseState, DateTime.now())
+        currentFlyingTimedState = ConcreteTimedState(FalseState,Date())
+        currentGrillingTimedState = ConcreteTimedState(FalseState, Date())
     }
 }

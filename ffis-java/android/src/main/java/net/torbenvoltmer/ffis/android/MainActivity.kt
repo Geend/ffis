@@ -14,6 +14,7 @@ import net.torbenvoltmer.ffis.common.state.StateVisitor
 import net.torbenvoltmer.ffis.common.state.TrueState
 import net.torbenvoltmer.ffis.common.state.UndefinedState
 import org.joda.time.format.DateTimeFormat
+import java.text.SimpleDateFormat
 
 
 class MainActivity : AppCompatActivity() {
@@ -68,8 +69,8 @@ class MainActivity : AppCompatActivity() {
 
     fun setTextViewTexts(){
 
-        val fmt = DateTimeFormat.forPattern("HH:mm dd.MM.yyyy")
-        val dtStr = fmt.print(LocalStateManager.localFlyingTimedState.since)
+        val fmt = SimpleDateFormat("HH:mm dd.MM.yyyy")
+        val dtStr = fmt.format(LocalStateManager.localFlyingTimedState.since)
 
         var title:String = ""
         var text:String = ""
