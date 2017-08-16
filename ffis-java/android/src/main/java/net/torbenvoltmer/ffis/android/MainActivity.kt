@@ -2,14 +2,11 @@ package net.torbenvoltmer.ffis.android
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.messaging.FirebaseMessaging
 import net.torbenvoltmer.ffis.android.localstate.LocalStateManager
-import net.torbenvoltmer.ffis.android.localstate.LocalStateObservee
 import net.torbenvoltmer.ffis.android.localstate.LocalStateObserver
 import net.torbenvoltmer.ffis.common.state.FalseState
 import net.torbenvoltmer.ffis.common.state.StateVisitor
@@ -17,6 +14,8 @@ import net.torbenvoltmer.ffis.common.state.TrueState
 import net.torbenvoltmer.ffis.common.state.UndefinedState
 import java.text.SimpleDateFormat
 
+import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : LocalStateObserver, AppCompatActivity() {
 
@@ -27,8 +26,10 @@ class MainActivity : LocalStateObserver, AppCompatActivity() {
         setContentView(net.torbenvoltmer.ffis.android.R.layout.activity_main)
 
 
-        val mainToolbar = findViewById<Toolbar>(R.id.main_toolbar)
         setSupportActionBar(mainToolbar)
+
+        //TODO: Set the color the proper way
+        mainToolbar.setTitleTextColor(android.graphics.Color.WHITE)
 
 
         FirebaseMessaging.getInstance().subscribeToTopic("dev")
@@ -56,14 +57,10 @@ class MainActivity : LocalStateObserver, AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.getItemId()) {
+        when (item.itemId) {
 
             R.id.action_refresh -> {
-
                 LocalStateManager.refreshLocalFlyingState()
-
-
-                setTextViewTexts()
 
                 Toast.makeText(this, getString(R.string.stateRefreshed), Toast.LENGTH_SHORT)
                         .show();
@@ -76,10 +73,9 @@ class MainActivity : LocalStateObserver, AppCompatActivity() {
     }
 
 
-    fun setTextViewTexts(){
+    private fun setTextViewTexts(){
 
-
-        val fmt = SimpleDateFormat("HH:mm dd.MM.yyyy")
+        val fmt = SimpleDateFormat("HH:mm dd.MM.yyyy", Locale.getDefault())
         val dtStr = fmt.format(LocalStateManager.localFlyingTimedState.since)
 
         var title:String = ""
@@ -102,12 +98,7 @@ class MainActivity : LocalStateObserver, AppCompatActivity() {
             }
         })
 
-
-        val state = findViewById<TextView>(R.id.textview_state)
-        val since = findViewById<TextView>(R.id.textview_since)
-
-
-        state.setText(title)
-        since.setText(text)
+        textviewState.setText(title)
+        textviewSince.setText(text)
     }
 }

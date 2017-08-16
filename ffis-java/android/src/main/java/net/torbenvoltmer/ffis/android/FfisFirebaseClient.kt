@@ -5,7 +5,7 @@ import android.app.PendingIntent
 import android.app.TaskStackBuilder
 import android.content.Context
 import android.content.Intent
-import android.support.v7.app.NotificationCompat
+import android.support.v4.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import net.torbenvoltmer.ffis.android.localstate.LocalStateManager
@@ -14,6 +14,7 @@ import net.torbenvoltmer.ffis.common.state.StateVisitor
 import net.torbenvoltmer.ffis.common.state.TrueState
 import net.torbenvoltmer.ffis.common.state.UndefinedState
 import java.text.SimpleDateFormat
+import java.util.*
 
 class FfisFirebaseClient : FirebaseMessagingService() {
 
@@ -28,7 +29,7 @@ class FfisFirebaseClient : FirebaseMessagingService() {
             var title:String = ""
             var text:String = ""
 
-            val fmt = SimpleDateFormat("HH:mm dd.MM.yyyy")
+            val fmt = SimpleDateFormat("HH:mm dd.MM.yyyy", Locale.getDefault())
             val dtStr = fmt.format(LocalStateManager.localFlyingTimedState.since)
 
             LocalStateManager.localFlyingTimedState.state.accept(object : StateVisitor  {

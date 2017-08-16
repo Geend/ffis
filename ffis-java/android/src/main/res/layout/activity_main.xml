@@ -8,7 +8,7 @@
     android:orientation="vertical" >
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/main_toolbar"
+        android:id="@+id/mainToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
@@ -17,14 +17,14 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"/>
 
     <TextView
-        android:id="@+id/textview_state"
+        android:id="@+id/textviewState"
         android:layout_width="238dp"
         android:layout_height="wrap_content"
         android:text="@string/nodata"
       />
 
     <TextView
-        android:id="@+id/textview_since"
+        android:id="@+id/textviewSince"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/nodata"
