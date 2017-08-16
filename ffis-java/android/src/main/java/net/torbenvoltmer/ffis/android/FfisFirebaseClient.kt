@@ -6,18 +6,12 @@ import android.app.TaskStackBuilder
 import android.content.Context
 import android.content.Intent
 import android.support.v7.app.NotificationCompat
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.datatype.joda.JodaModule
-import com.fasterxml.jackson.module.kotlin.KotlinModule
-
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import net.torbenvoltmer.ffis.common.state.FalseState
 import net.torbenvoltmer.ffis.common.state.StateVisitor
 import net.torbenvoltmer.ffis.common.state.TrueState
 import net.torbenvoltmer.ffis.common.state.UndefinedState
-import net.torbenvoltmer.ffis.common.state.timedstate.ConcreteTimedState
-import org.joda.time.format.DateTimeFormat
 import java.text.SimpleDateFormat
 
 class FfisFirebaseClient : FirebaseMessagingService() {

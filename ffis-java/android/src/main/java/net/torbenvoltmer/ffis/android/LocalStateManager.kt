@@ -1,9 +1,8 @@
 package net.torbenvoltmer.ffis.android
 
 
-import net.torbenvoltmer.ffis.common.state.timedstate.TimedState
 import net.torbenvoltmer.ffis.common.state.timedstate.NoDataTimedState
-
+import net.torbenvoltmer.ffis.common.state.timedstate.TimedState
 
 
 /**

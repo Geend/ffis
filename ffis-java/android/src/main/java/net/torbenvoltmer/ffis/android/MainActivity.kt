@@ -4,16 +4,14 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
-import android.widget.TextView
-import com.google.firebase.messaging.FirebaseMessaging
-
 import android.view.MenuItem
+import android.widget.TextView
 import android.widget.Toast
+import com.google.firebase.messaging.FirebaseMessaging
 import net.torbenvoltmer.ffis.common.state.FalseState
 import net.torbenvoltmer.ffis.common.state.StateVisitor
 import net.torbenvoltmer.ffis.common.state.TrueState
 import net.torbenvoltmer.ffis.common.state.UndefinedState
-import org.joda.time.format.DateTimeFormat
 import java.text.SimpleDateFormat
 
 
@@ -25,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(net.torbenvoltmer.ffis.android.R.layout.activity_main)
 
 
-        val mainToolbar = findViewById(R.id.main_toolbar) as Toolbar
+        val mainToolbar = findViewById<Toolbar>(R.id.main_toolbar)
         setSupportActionBar(mainToolbar)
 
 
@@ -56,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
                 setTextViewTexts()
 
-                Toast.makeText(this, "Status aktualisiert", Toast.LENGTH_SHORT)
+                Toast.makeText(this, getString(R.string.stateRefreshed), Toast.LENGTH_SHORT)
                         .show();
             }
             else -> {
@@ -93,8 +91,8 @@ class MainActivity : AppCompatActivity() {
         })
 
 
-        val state = findViewById(R.id.textview_state) as TextView
-        val since = findViewById(R.id.textview_since) as TextView
+        val state = findViewById<TextView>(R.id.textview_state)
+        val since = findViewById<TextView>(R.id.textview_since)
 
 
         state.setText(title)

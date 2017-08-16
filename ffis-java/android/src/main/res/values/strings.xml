@@ -9,4 +9,5 @@
     <string name="action_refresh">Refresh</string>
     <string name="unknown_fling">Status unbekannt</string>
     <string name="unknown_flying_since">Seit %1$s</string>
+    <string name="stateRefreshed">Status aktualisiert</string>
 </resources>

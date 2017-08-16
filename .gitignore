@@ -132,3 +132,6 @@ freeline_project_description.json
 
 # Custom
 application.properties
+
+# Ignore the hardware project until it doesn't contain authentication data anymore
+ffis-hardware/
