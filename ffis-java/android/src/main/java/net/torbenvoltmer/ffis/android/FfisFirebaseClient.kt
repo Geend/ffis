@@ -8,6 +8,7 @@ import android.content.Intent
 import android.support.v7.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import net.torbenvoltmer.ffis.android.localstate.LocalStateManager
 import net.torbenvoltmer.ffis.common.state.FalseState
 import net.torbenvoltmer.ffis.common.state.StateVisitor
 import net.torbenvoltmer.ffis.common.state.TrueState

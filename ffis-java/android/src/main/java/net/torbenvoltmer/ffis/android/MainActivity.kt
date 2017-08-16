@@ -8,6 +8,9 @@ import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.messaging.FirebaseMessaging
+import net.torbenvoltmer.ffis.android.localstate.LocalStateManager
+import net.torbenvoltmer.ffis.android.localstate.LocalStateObservee
+import net.torbenvoltmer.ffis.android.localstate.LocalStateObserver
 import net.torbenvoltmer.ffis.common.state.FalseState
 import net.torbenvoltmer.ffis.common.state.StateVisitor
 import net.torbenvoltmer.ffis.common.state.TrueState
@@ -15,7 +18,8 @@ import net.torbenvoltmer.ffis.common.state.UndefinedState
 import java.text.SimpleDateFormat
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : LocalStateObserver, AppCompatActivity() {
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +32,10 @@ class MainActivity : AppCompatActivity() {
 
 
         FirebaseMessaging.getInstance().subscribeToTopic("dev")
-        FfisRestClient.loadFlyingState()
+
+        LocalStateManager.addObserver(this)
+        LocalStateManager.refreshLocalFlyingState()
+
     }
 
     override fun onResume() {
@@ -37,6 +44,9 @@ class MainActivity : AppCompatActivity() {
         setTextViewTexts()
     }
 
+    override fun handleLocalStateRefresh() {
+        setTextViewTexts()
+    }
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -50,7 +60,8 @@ class MainActivity : AppCompatActivity() {
 
             R.id.action_refresh -> {
 
-                FfisRestClient.loadFlyingState()
+                LocalStateManager.refreshLocalFlyingState()
+
 
                 setTextViewTexts()
 
@@ -66,6 +77,7 @@ class MainActivity : AppCompatActivity() {
 
 
     fun setTextViewTexts(){
+
 
         val fmt = SimpleDateFormat("HH:mm dd.MM.yyyy")
         val dtStr = fmt.format(LocalStateManager.localFlyingTimedState.since)

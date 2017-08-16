@@ -3,6 +3,7 @@ package net.torbenvoltmer.ffis.android
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.AsyncHttpResponseHandler
 import cz.msebera.android.httpclient.Header
+import net.torbenvoltmer.ffis.android.localstate.LocalStateManager
 import java.nio.charset.Charset
 
 /**
