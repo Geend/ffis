@@ -11,10 +11,11 @@ import net.torbenvoltmer.ffis.common.state.timedstate.TimedState
  */
 object FfisJsonDecoder {
 
-    val mapper:ObjectMapper;
+    //TODO: Consider moving the jackson ObjectMapper to the common project, because it is used in exactly the same configureation in the webservice project
+    val mapper:ObjectMapper = ObjectMapper();
 
     init {
-        mapper = ObjectMapper().registerModule(KotlinModule())
+        mapper.registerModule(KotlinModule())
         mapper.registerModule(JodaModule())
         mapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL)
     }

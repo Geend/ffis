@@ -29,6 +29,7 @@ class FfisFirebaseClient : FirebaseMessagingService() {
             var title:String = ""
             var text:String = ""
 
+
             val fmt = SimpleDateFormat("HH:mm dd.MM.yyyy", Locale.getDefault())
             val dtStr = fmt.format(LocalStateManager.localFlyingTimedState.since)
 
@@ -75,6 +76,7 @@ class FfisFirebaseClient : FirebaseMessagingService() {
             mBuilder.setContentIntent(resultPendingIntent)
             val mNotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
+            //TODO: Declare static id for this type of notification. How is this supposed to be done in android?
             mNotificationManager.notify(5, mBuilder.build())
 
         }
