@@ -6,7 +6,7 @@ group 'net.torbenvoltmer.ffis'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.0'
+    buildToolsVersion '26.0.1'
     defaultConfig {
         applicationId "net.torbenvoltmer.ffis.android"
         minSdkVersion 19
@@ -36,12 +36,12 @@ android {
 }
 
 buildscript {
-    ext.kotlin_version = '1.1.3-2'
+    ext.kotlin_version = '1.1.4'
     repositories {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-beta1'
+        classpath 'com.android.tools.build:gradle:3.0.0-beta2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         classpath 'com.google.gms:google-services:3.0.0'
@@ -52,6 +52,7 @@ buildscript {
 
 repositories {
     mavenCentral()
+    jcenter()
     maven {
         url "https://maven.google.com"
     }
@@ -73,7 +74,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.0.1'
 
     compile 'com.loopj.android:android-async-http:1.4.9'
-    compile 'com.google.firebase:firebase-messaging:11.0.4'
+    compile 'com.google.firebase:firebase-messaging:11.2.0'
 
 
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.8.8'
