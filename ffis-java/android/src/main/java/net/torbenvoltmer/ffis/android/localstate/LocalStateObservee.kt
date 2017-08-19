@@ -18,6 +18,7 @@ abstract class LocalStateObservee {
     }
 
     fun notifyObservers(){
+
         observers.forEach{ it.handleLocalStateRefresh() }
     }
 

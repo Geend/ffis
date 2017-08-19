@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.joda.JodaModule
 import com.fasterxml.jackson.module.kotlin.KotlinModule
+import net.torbenvoltmer.ffis.jackson.JacksonObjectMapperInstance
 import net.torbenvoltmer.ffis.webservice.config.LocationConfig
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
@@ -24,14 +25,6 @@ open class JacksonConfiguration {
 
     @Bean
     open fun objectMapper(): ObjectMapper {
-        val mapper = ObjectMapper()
-        mapper.registerModule(JodaModule())
-        mapper.registerModule(KotlinModule())
-        mapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS , false)
-
-
-
-        return mapper
+        return  JacksonObjectMapperInstance.mapper
     }
 }

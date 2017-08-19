@@ -16,8 +16,8 @@ object FfisRestClient {
 
         //TODO: Make URL a user setting
         //TODO Error handling
-        //client.get("http://state.haec.de/flying/get", object : AsyncHttpResponseHandler() {
         client.get("http://state.haec.de/flying/get", object : AsyncHttpResponseHandler() {
+        //client.get("http://state.haec.de/flying/get", object : AsyncHttpResponseHandler() {
 
 
             override fun onStart() {

@@ -5,6 +5,8 @@ import com.fasterxml.jackson.datatype.joda.JodaModule
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import net.torbenvoltmer.ffis.common.state.timedstate.ConcreteTimedState
 import net.torbenvoltmer.ffis.common.state.timedstate.TimedState
+import net.torbenvoltmer.ffis.firebase.notification.NotificationType
+import net.torbenvoltmer.ffis.firebase.notification.NotificationTypeWrapper
 import net.torbenvoltmer.ffis.jackson.JacksonObjectMapperInstance
 
 /**
@@ -15,6 +17,8 @@ object FfisJsonDecoder {
     fun timedState(json:String):TimedState{
        return JacksonObjectMapperInstance.mapper.readValue(json, ConcreteTimedState::class.java)
     }
-
+    fun notificationType(json:String): NotificationTypeWrapper {
+        return JacksonObjectMapperInstance.mapper.readValue(json, NotificationTypeWrapper::class.java)
+    }
 
 }

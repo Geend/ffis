@@ -32,7 +32,7 @@ class MainActivity : LocalStateObserver, AppCompatActivity() {
         mainToolbar.setTitleTextColor(android.graphics.Color.WHITE)
 
 
-        FirebaseMessaging.getInstance().subscribeToTopic("dev")
+        FirebaseMessaging.getInstance().subscribeToTopic("haec")
 
         LocalStateManager.addObserver(this)
         LocalStateManager.refreshLocalFlyingState()
@@ -75,30 +75,33 @@ class MainActivity : LocalStateObserver, AppCompatActivity() {
 
     private fun setTextViewTexts(){
 
-        val fmt = SimpleDateFormat("HH:mm dd.MM.yyyy", Locale.getDefault())
-        val dtStr = fmt.format(LocalStateManager.localFlyingTimedState.since)
+        runOnUiThread {
+            val fmt = SimpleDateFormat("HH:mm dd.MM.yyyy", Locale.getDefault())
+            val dtStr = fmt.format(LocalStateManager.localFlyingTimedState.since)
 
-        var title:String = ""
-        var text:String = ""
+            var title:String = ""
+            var text:String = ""
 
-        LocalStateManager.localFlyingTimedState.state.accept(object : StateVisitor {
-            override fun handle(arg: TrueState) {
-                title =  getString(R.string.flying);
-                text = getString(R.string.flying_since,  dtStr)
-            }
+            LocalStateManager.localFlyingTimedState.state.accept(object : StateVisitor {
+                override fun handle(arg: TrueState) {
+                    title =  getString(R.string.flying);
+                    text = getString(R.string.flying_since,  dtStr)
+                }
 
-            override fun handle(arg: FalseState) {
-                title = getString(R.string.not_fling);
-                text = getString(R.string.not_flying_since,  dtStr)
-            }
+                override fun handle(arg: FalseState) {
+                    title = getString(R.string.not_fling);
+                    text = getString(R.string.not_flying_since,  dtStr)
+                }
 
-            override fun handle(arg: UndefinedState) {
-                title = getString(R.string.unknown_fling);
-                text = getString(R.string.unknown_flying_since,  dtStr)
-            }
-        })
+                override fun handle(arg: UndefinedState) {
+                    title = getString(R.string.unknown_fling);
+                    text = getString(R.string.unknown_flying_since,  dtStr)
+                }
+            })
 
-        textviewState.setText(title)
-        textviewSince.setText(text)
+            textviewState.setText(title)
+            textviewSince.setText(text)
+        }
+
     }
 }

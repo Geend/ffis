@@ -8,6 +8,9 @@ import java.util.*
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.datatype.joda.JodaModule
 import com.fasterxml.jackson.module.kotlin.KotlinModule
+import net.torbenvoltmer.ffis.firebase.notification.NonSilentNotification
+import net.torbenvoltmer.ffis.firebase.notification.NotificationTypeWrapper
+import net.torbenvoltmer.ffis.firebase.notification.SilentNotification
 import org.springframework.beans.factory.annotation.Autowired
 
 
@@ -34,15 +37,17 @@ class StateController @org.springframework.beans.factory.annotation.Autowired co
     fun setFlying(@org.springframework.web.bind.annotation.RequestParam(value="state") state:Boolean): TimedState {
         stateService.setFlying(state);
 
-        val json = mapper.writeValueAsString(stateService.getFlyingState())
+        val dataJson = mapper.writeValueAsString(stateService.getFlyingState())
+        val notificationTypeJson = mapper.writeValueAsString(NotificationTypeWrapper(SilentNotification))
 
 
         val data:MutableMap<String, String> = HashMap<String, String>()
 
         data.put("type", "flyingState")
-        data.put("data", json)
+        data.put("data", dataJson)
+        data.put("notificationType", notificationTypeJson);
 
-        firebaseService.sendData("/topics/dev", data)
+        firebaseService.sendData("/topics/haec", data)
 
 
         return stateService.getFlyingState();

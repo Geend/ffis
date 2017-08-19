@@ -5,8 +5,6 @@ package net.torbenvoltmer.ffis.common.state
  */
 object TrueState : State{
 
-
-
     override fun accept(visitor: StateVisitor) {
         visitor.handle(this)
     }
