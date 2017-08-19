@@ -81,7 +81,7 @@ class FfisFirebaseClient : FirebaseMessagingService() {
 
                 //TODO: Declare static id for this type of notification. How is this supposed to be done in android?
                 mNotificationManager.notify(5, mBuilder.build())
-                
+
 
             }
         }

@@ -38,7 +38,7 @@ class StateController @org.springframework.beans.factory.annotation.Autowired co
         stateService.setFlying(state);
 
         val dataJson = mapper.writeValueAsString(stateService.getFlyingState())
-        val notificationTypeJson = mapper.writeValueAsString(NotificationTypeWrapper(SilentNotification))
+        val notificationTypeJson = mapper.writeValueAsString(NotificationTypeWrapper(NonSilentNotification))
 
 
         val data:MutableMap<String, String> = HashMap<String, String>()

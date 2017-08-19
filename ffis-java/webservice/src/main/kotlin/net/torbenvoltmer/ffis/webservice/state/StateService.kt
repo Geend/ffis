@@ -58,6 +58,7 @@ class StateService @Autowired constructor(sunsetStateChangeTimer: SunsetStateCha
     }
 
     override fun handleSunset() {
+        //TODO: Send silent notification to firebase clients
         currentFlyingTimedState = ConcreteTimedState(FalseState,Date())
         currentGrillingTimedState = ConcreteTimedState(FalseState, Date())
     }
