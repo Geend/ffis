@@ -2,8 +2,9 @@
 class modOpIndicatorHelper
 {
     public static function getOperation($params)
-    {		
-		$flyingJson = file_get_contents('http://state.haec.de/flying/get');
+    {		 
+	
+		$flyingJson = file_get_contents('https://state.haec.de/flying/get');
 		$flying = json_decode($flyingJson);
 
 		$state = $flying->state[0];
