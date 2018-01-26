@@ -134,4 +134,9 @@ freeline_project_description.json
 application.properties
 
 # Ignore the hardware project until it doesn't contain authentication data anymore
-ffis-hardware/
+#ffis-hardware/
+#
+.pioenvs
+CMakeListsPrivate.txt
+.piolibdeps
+
