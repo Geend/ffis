@@ -21,7 +21,7 @@ open class FirebaseAdminClient(key:String){
 
     init {
         header.put("Content-Type", "application/json")
-        header.put("Authorization", "key=" + key)
+        header.put("Authorization", "key=$key")
 
         FuelManager.instance.basePath = url
         FuelManager.instance.baseHeaders = header

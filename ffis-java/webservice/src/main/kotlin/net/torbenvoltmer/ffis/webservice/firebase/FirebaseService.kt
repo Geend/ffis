@@ -3,7 +3,6 @@ package net.torbenvoltmer.ffis.webservice.firebase
 import net.torbenvoltmer.ffis.webservice.config.FirebaseConfig
 import net.torbenvoltmer.ffis.webservice.config.LocationConfig
 import net.torbenvoltmer.ffis.webservice.info.weather.WindInfo
-import org.bitpipeline.lib.owm.OwmClient
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 

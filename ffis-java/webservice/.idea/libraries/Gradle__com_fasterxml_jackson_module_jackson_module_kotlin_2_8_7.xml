@@ -3,7 +3,9 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.module/jackson-module-kotlin/2.8.7/6323f85b05b2ad46ceca227f893c22e15fc1c0a2/jackson-module-kotlin-2.8.7.jar!/" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.module/jackson-module-kotlin/2.8.7/95a6226b357bdba622bc632447269171047fb87/jackson-module-kotlin-2.8.7-javadoc.jar!/" />
+    </JAVADOC>
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.module/jackson-module-kotlin/2.8.7/b341efbaacf9516f77b6fe9d909e0a8e8d5b6c57/jackson-module-kotlin-2.8.7-sources.jar!/" />
     </SOURCES>

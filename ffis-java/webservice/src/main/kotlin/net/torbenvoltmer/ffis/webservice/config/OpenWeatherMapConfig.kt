@@ -4,8 +4,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Configuration
 
 @Configuration
-@ConfigurationProperties(prefix = "ffis.firebase")
-open class FirebaseConfig {
+@ConfigurationProperties(prefix = "ffis.openweathermap")
+open class OpenWeatherMapConfig {
 
     /**
      * Key for firebase connection
